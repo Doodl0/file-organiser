@@ -44,7 +44,6 @@ func CopyFile(filename string) {
 
 	// If we want to delete original files, delete it
 	if DeleteFilesAfterCopying.variable {
-		fmt.Println(DeleteFilesAfterCopying.variable)
 		err3 := os.Remove(filename)
 
 		// Error handling
