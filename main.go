@@ -10,8 +10,7 @@ func main() {
 	files, err := os.ReadDir(".")
 
 	// Confirm options with user
-	AskUserOption(CopyFilesWithoutExtensions)
-	AskUserOption(DeleteFilesAfterCopying)
+	AskUserOptions()
 
 	//Loop through every file, and copy it to respective folder
 	if err == nil {

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 type Argument struct {
@@ -10,23 +9,31 @@ type Argument struct {
 	description string
 }
 
-var CopyFilesWithoutExtensions Argument = Argument{false, "Copy files without extensions? [Y/n]"}
+var CopyFilesWithoutExtensions Argument = Argument{true, "Copy files without extensions? [Y/n]"}
 var DeleteFilesAfterCopying Argument = Argument{false, "Delete original files after copying? [y/N]"}
 
-func AskUserOption(option Argument) {
+func AskUserOptions() {
 
 	// Ask user the option
-	fmt.Print(option.description)
+	fmt.Print(CopyFilesWithoutExtensions.description)
 	// Get user's input
 	var input string
-	fmt.Scanln(&input)
+	fmt.Scan(&input)
 	// Change option based on user input
-	switch strings.ToLower(input) {
-	case "y":
-		option.variable = true
+	if input == "y" || input == "Y" {
+		CopyFilesWithoutExtensions.variable = true
+	} else if input == "n" || input == "N" {
+		CopyFilesWithoutExtensions.variable = false
+	}
 
-	case "n":
-		option.variable = false
-		fmt.Print(option)
+	// Ask user the option
+	fmt.Print(DeleteFilesAfterCopying.description)
+	// Get user's input
+	fmt.Scan(&input)
+	// Change option based on user input
+	if input == "y" || input == "Y" {
+		DeleteFilesAfterCopying.variable = true
+	} else if input == "n" || input == "N" {
+		DeleteFilesAfterCopying.variable = false
 	}
 }
